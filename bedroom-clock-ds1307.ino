@@ -2,6 +2,9 @@
 // Based on example code written by Tony DiCola for Adafruit Industries.
 // Released under a MIT license: https://opensource.org/licenses/MIT
 
+// Todo: Remove delay(1000) in main loop and change to a timer to make
+//        it non blocking.
+
 // Clock example using a seven segment display & DS1307 real-time clock.
 //
 // Must have the Adafruit RTClib library installed too!  See:
@@ -37,6 +40,8 @@ RTC_DS1307 rtc = RTC_DS1307();
 // Keep track of the hours, minutes, seconds displayed by the clock.
 // Start off at 0:00:00 as a signal that the time should be read from
 // the DS1307 to initialize it.
+// Specifically, minuites is checked in the main loop and when is 0
+//    time is pulled from the real time clock chip. rtc.now()
 int hours = 0;
 int minutes = 0;
 int seconds = 0;
