@@ -2,6 +2,8 @@
 // Based on example code written by Tony DiCola for Adafruit Industries.
 // Released under a MIT license: https://opensource.org/licenses/MIT
 
+// Wiring: Arduino Uno SDA is A4. SCL is A5.s
+
 // Todo: Remove delay(1000) in main loop and change to a timer to make
 //        it non blocking.
 
