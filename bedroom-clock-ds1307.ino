@@ -1,5 +1,7 @@
 // Code by Brian Ernst 2021
-// Based on example code written by Tony DiCola for Adafruit Industries.
+// Based on example code clock_sevenseg_ds1307 written by Tony DiCola for Adafruit Industries.
+//    from the Adafruit LED backpack library
+//    https://github.com/adafruit/Adafruit_LED_Backpack
 // Released under a MIT license: https://opensource.org/licenses/MIT
 
 // Wiring: Arduino Uno: SDA is A4. SCL is A5
