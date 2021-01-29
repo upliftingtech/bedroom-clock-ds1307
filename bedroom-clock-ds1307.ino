@@ -3,7 +3,7 @@
 // Released under a MIT license: https://opensource.org/licenses/MIT
 
 // Wiring: Arduino Uno: SDA is A4. SCL is A5
-//         Wemos D1 mini: SDA is D2. SCL is D1
+//         Wemos LOLIN D1 mini: SDA is D2. SCL is D1
 
 // Todo: Remove delay(1000) in main loop and change to a timer to make
 //        it non blocking.
