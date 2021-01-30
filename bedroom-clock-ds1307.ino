@@ -166,11 +166,6 @@ void loop() {
 	  // Now push out to the display the new values that were set above.
 	  clockDisplay.writeDisplay();
 	
-	  // Pause for a second for time to elapse.  This value is in milliseconds
-	  // so 1000 milliseconds = 1 second.
-	  //  delay(1000);
-	  // can't use delay and do wifi
-	
 	  // Now increase the seconds by one.
 	  seconds += 1;
 	  // If the seconds go above 59 then the minutes should increase and
