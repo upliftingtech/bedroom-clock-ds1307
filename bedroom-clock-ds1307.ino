@@ -28,6 +28,10 @@
 #include <RTClib.h>
 #include "Adafruit_LEDBackpack.h"
 
+// INCLUDE CHRONO LIBRARY : http://github.com/SofaPirate/Chrono
+#include <Chrono.h> 
+
+
 
 // Set to false to display time in 12 hour format, or true to use 24 hour:
 #define TIME_24_HOUR      false
