@@ -59,6 +59,10 @@ int seconds = 0;
 // on and off every second.
 bool blinkColon = false;
 
+// instantiate a Chrono object.
+Chrono loopChrono; 
+
+
 
 void setup() {
   // Setup function runs once at startup to initialize the display
@@ -91,6 +95,8 @@ void setup() {
 }
 
 void loop() {
+  // 
+
   // Loop function runs over and over again to implement the clock logic.
   
   // Check if it's the top of the hour and get a new time reading
