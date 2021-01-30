@@ -92,12 +92,12 @@ void setup() {
 }
 
 void loop() {
+  // Loop function runs over and over again to implement the clock logic.
+	  
   // check to see if it is time to run the loop
   if (loopChrono.hasPassed(1000) ) { // is true if 1000ms have passed since chronometer was started
       loopChrono.restart();  // start/restarts the chronometer
 
-	  // Loop function runs over and over again to implement the clock logic.
-	  
 	  // Check if it's the top of the hour and get a new time reading
 	  // from the DS1307.  This helps keep the clock accurate by fixing
 	  // any drift.
