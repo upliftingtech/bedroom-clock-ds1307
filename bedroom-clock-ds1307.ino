@@ -71,6 +71,7 @@ void setup() {
 
   // Setup the display.
   clockDisplay.begin(DISPLAY_ADDRESS);
+  clockDisplay.setBrightness(0); // set display to dimmest setting
 
   // Setup the DS1307 real-time clock.
   rtc.begin();
