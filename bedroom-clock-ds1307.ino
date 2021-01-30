@@ -160,7 +160,8 @@ void loop() {
 
   // Pause for a second for time to elapse.  This value is in milliseconds
   // so 1000 milliseconds = 1 second.
-  delay(1000);
+//  delay(1000);
+// can't use delay and do wifi
 
   // Now increase the seconds by one.
   seconds += 1;
