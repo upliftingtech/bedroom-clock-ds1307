@@ -95,6 +95,8 @@ void setup() {
 void loop() {
   // Loop function runs over and over again to implement the clock logic.
 	  
+  //Read an analog voltage from a pot and use it to set the brightness of the display	  
+	  
   // check to see if it is time to update the display and add a second
   if (loopChrono.hasPassed(1000) ) { // is true if 1000ms have passed since chronometer was started
       loopChrono.restart();  // start/restarts the chronometer
