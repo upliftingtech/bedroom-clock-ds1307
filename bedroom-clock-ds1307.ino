@@ -37,6 +37,9 @@
 // unless you've changed the address jumpers on the back of the display.
 #define DISPLAY_ADDRESS   0x70
 
+# define BRIGHTNESS_HOW_OFTEN 250 // how often (in ms) do we check the brightness knob. 
+     // we only display once a second so nothing will be displayed until then anyway. 
+     // maybe add display update when the knob changes logic
 
 // Create display and DS1307 objects.  These are global variables that
 // can be accessed from both the setup and loop function below.
@@ -58,7 +61,7 @@ bool blinkColon = false;
 
 // instantiate a Chrono object.
 Chrono loopChrono; 
-
+Chrono brightnessChrono;
 
 
 void setup() {
@@ -94,8 +97,14 @@ void setup() {
 
 void loop() {
   // Loop function runs over and over again to implement the clock logic.
-	  
-  //Read an analog voltage from a pot and use it to set the brightness of the display	  
+
+  // Is it time to read the brightnessKnob?	  
+  if (brightnessChrono.hasPassed(BRIGHTNESS_HOW_OFTEN)) {
+	  brightnessChrono.restart(); // starts restarts the chgronometer
+  }
+  // Read an analog voltage from a pot and use it to set the brightness of the display	  
+
+
 	  
   // check to see if it is time to update the display and add a second
   if (loopChrono.hasPassed(1000) ) { // is true if 1000ms have passed since chronometer was started
