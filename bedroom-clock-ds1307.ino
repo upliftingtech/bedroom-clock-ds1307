@@ -102,11 +102,11 @@ void loop() {
   // Is it time to read the brightnessKnob?	  
   if (brightnessChrono.hasPassed(BRIGHTNESS_HOW_OFTEN)) {
 	  brightnessChrono.restart(); // starts restarts the chgronometer
+	  // Read an analog voltage from a pot and use it to set the brightness of the display	
+	  int x = analogRead(WEMOS_D1_A0); 
+	  map(x, 0, 255, 0, 16); // map(value, fromLow, fromHigh, toLow, toHigh)
+	  clockDisplay.setBrightness(x);
   }
-  // Read an analog voltage from a pot and use it to set the brightness of the display	
-  int x = analogRead(WEMOS_D1_A0); 
-  map(x, 0, 255, 0, 16); // map(value, fromLow, fromHigh, toLow, toHigh)
-  clockDisplay.setBrightness(x);
 
 	  
   // check to see if it is time to update the display and add a second
