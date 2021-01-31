@@ -41,6 +41,8 @@
      // we only display once a second so nothing will be displayed until then anyway. 
      // maybe add display update when the knob changes logic
 
+# define WEMOS_D1_A0 0 //What does the Arduino IDE call the wemos A0 pin? Trying 0
+
 // Create display and DS1307 objects.  These are global variables that
 // can be accessed from both the setup and loop function below.
 Adafruit_7segment clockDisplay = Adafruit_7segment();
@@ -74,7 +76,6 @@ void setup() {
 
   // Setup the display.
   clockDisplay.begin(DISPLAY_ADDRESS);
-  // clockDisplay.setBrightness(0); // set display to dimmest setting
 
   // Setup the DS1307 real-time clock.
   rtc.begin();
@@ -102,8 +103,10 @@ void loop() {
   if (brightnessChrono.hasPassed(BRIGHTNESS_HOW_OFTEN)) {
 	  brightnessChrono.restart(); // starts restarts the chgronometer
   }
-  // Read an analog voltage from a pot and use it to set the brightness of the display	  
-
+  // Read an analog voltage from a pot and use it to set the brightness of the display	
+  int x = analogRead(WEMOS_D1_A0); 
+  map(x, 0, 255, 0, 16); // map(value, fromLow, fromHigh, toLow, toHigh)
+  clockDisplay.setBrightness(x);
 
 	  
   // check to see if it is time to update the display and add a second
