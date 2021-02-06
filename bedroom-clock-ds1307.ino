@@ -104,7 +104,7 @@ void loop() {
 	  brightnessChrono.restart(); // starts restarts the chgronometer
 	  // Read an analog voltage from a pot and use it to set the brightness of the display	
 	  int x = analogRead(WEMOS_D1_A0); // returns 0 to 1023
-	  map(x, 0, 1023, 0, 16); // map(value, fromLow, fromHigh, toLow, toHigh)
+	  x = map(x, 0, 1023, 0, 16); // map(value, fromLow, fromHigh, toLow, toHigh)
 	  clockDisplay.setBrightness(x);
   }
 
