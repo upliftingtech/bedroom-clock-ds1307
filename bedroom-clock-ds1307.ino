@@ -42,7 +42,8 @@
      // maybe add display update when the knob changes logic
 
 #define WEMOS_D1_A0 0 //What does the Arduino IDE call the wemos A0 pin? Trying 0
-#define KNOB_RAW_MAX 536 // analogRead on my knob seems to max out at somthing below 1023 so define it here
+#define KNOB_RAW_MAX 530 // analogRead on my knob seems to max out at somthing below 1023 so define it here
+                         // i sampled it at about 535 but use 530 and use a check for going over in code
 
 // Create display and DS1307 objects.  These are global variables that
 // can be accessed from both the setup and loop function below.
@@ -107,13 +108,14 @@ void loop() {
 	  int x = analogRead(WEMOS_D1_A0); // analogRead returns 0 to 1023
 
 	  // i suspect the knob is not returning a max of 1023. let's take a look
-	  // actually doing 0 - 536
+	  // actually doing 0 - 535
 	  // use KNOB_RAW_MAX macro for top end of range
 	  Serial.print("raw A0 pin ");
 	  Serial.println(x);
 
       // map analogRead range into the 16 steps the display can do (0-15)
 	  x = map(x, 0, KNOB_RAW_MAX, 0, 15); // map(value, fromLow, fromHigh, toLow, toHigh)
+	  if (x > 15) x = 15; // just make sure x isn't bigger than 15
 	  clockDisplay.setBrightness(x);
   }
 
