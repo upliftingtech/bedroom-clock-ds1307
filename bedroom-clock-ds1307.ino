@@ -3,22 +3,19 @@
 //    from the Adafruit LED backpack library
 //    https://github.com/adafruit/Adafruit_LED_Backpack
 // Released under a MIT license: https://opensource.org/licenses/MIT
-
+//
+// Hardware: Wemos LOLIN D1 mini
+//           Adafruit 1.2" 7-segment LED HT16K33 Backpack
+//           DS1307 real-time clock.
+//
 // Wiring: Arduino Uno: SDA is A4. SCL is A5
 //         Wemos LOLIN D1 mini: SDA is D2. SCL is D1
-
-// Clock example using a seven segment display & DS1307 real-time clock.
 //
 // Must have the Adafruit RTClib library installed too!  See:
 //   https://github.com/adafruit/RTClib
 //
 // Designed specifically to work with the Adafruit LED 7-Segment backpacks
 // and DS1307 real-time clock breakout:
-// ----> http://www.adafruit.com/products/881
-// ----> http://www.adafruit.com/products/880
-// ----> http://www.adafruit.com/products/879
-// ----> http://www.adafruit.com/products/878
-// ----> https://www.adafruit.com/products/264
 
 #include <Wire.h>
 #include <Adafruit_GFX.h>
