@@ -116,7 +116,7 @@ void setup() {
   clockDisplay.begin(DISPLAY_ADDRESS);
   
   // Setup wifi and connect to an access point
-  setup_wifi();
+  // setup_wifi(); crashing so comment out
 
   // Setup the DS1307 real-time clock.
   rtc.begin();
