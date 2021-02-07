@@ -112,8 +112,8 @@ void loop() {
 	  Serial.print("raw A0 pin ");
 	  Serial.println(x);
 
-      // map analogRead range into the 16 steps the display can do (0-16? 0-15? not sure)
-	  x = map(x, 0, KNOB_RAW_MAX, 0, 16); // map(value, fromLow, fromHigh, toLow, toHigh)
+      // map analogRead range into the 16 steps the display can do (0-15)
+	  x = map(x, 0, KNOB_RAW_MAX, 0, 15); // map(value, fromLow, fromHigh, toLow, toHigh)
 	  clockDisplay.setBrightness(x);
   }
 
