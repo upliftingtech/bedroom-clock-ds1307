@@ -103,7 +103,13 @@ void loop() {
   if (brightnessChrono.hasPassed(BRIGHTNESS_HOW_OFTEN)) {
 	  brightnessChrono.restart(); // starts restarts the chgronometer
 	  // Read an analog voltage from a pot and use it to set the brightness of the display	
-	  int x = analogRead(WEMOS_D1_A0); // returns 0 to 1023
+	  int x = analogRead(WEMOS_D1_A0); // analogRead returns 0 to 1023
+
+	  // i suspect the knob is not returning a max of 1023. let's take a look
+	  Serial.print("raw A0 pin ");
+	  Serial.println(x);
+
+      // map analogRead range into the 16 steps the display can do (0-16? 0-15? not sure)
 	  x = map(x, 0, 1023, 0, 16); // map(value, fromLow, fromHigh, toLow, toHigh)
 	  clockDisplay.setBrightness(x);
   }
