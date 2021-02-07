@@ -75,6 +75,35 @@ Chrono brightnessChrono;
 const char* ssid     = STASSID;
 const char* password = STAPSK;
 
+// instantiate a wifi object.
+WiFiClient espClient;
+
+// run once from setup()
+// connect to access point
+void setup_wifi() {
+	
+  delay(10);
+  // We start by connecting to a WiFi network
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  randomSeed(micros());
+
+  Serial.println("");
+  Serial.println("WiFi connected");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+}
+
 // SETUP function - run once
 void setup() {
   // Initialize the display and DS1307 clock.
@@ -85,6 +114,9 @@ void setup() {
 
   // Setup the display.
   clockDisplay.begin(DISPLAY_ADDRESS);
+  
+  // Setup wifi and connect to an access point
+  setup_wifi();
 
   // Setup the DS1307 real-time clock.
   rtc.begin();
