@@ -46,8 +46,8 @@
 
 // secrets for wifi
 // should be in another file some day
-#define STASSID "your-ssid"
-#define STAPSK  "your-password"
+#define STASSID "bouncyhouse"
+#define STAPSK  "bakabaka"
 
 // Create display and DS1307 objects.  These are global variables that
 // can be accessed from both the setup and loop function below.
@@ -71,10 +71,13 @@ bool blinkColon = false;
 Chrono loopChrono; 
 Chrono brightnessChrono;
 
+// Globals for wifi credentials
+const char* ssid     = STASSID;
+const char* password = STAPSK;
 
+// SETUP function - run once
 void setup() {
-  // Setup function runs once at startup to initialize the display
-  // and DS1307 clock.
+  // Initialize the display and DS1307 clock.
 
   // Setup Serial port to print debug output.
   Serial.begin(115200);
