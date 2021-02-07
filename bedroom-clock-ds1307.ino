@@ -25,7 +25,8 @@
 // INCLUDE CHRONO LIBRARY : http://github.com/SofaPirate/Chrono
 #include <Chrono.h> 
 
-
+// INCLUDE WiFi
+#include <ESP8266WiFi.h>
 
 // Set to false to display time in 12 hour format, or true to use 24 hour:
 #define TIME_24_HOUR      false
@@ -42,6 +43,11 @@
 #define KNOB_RAW_MAX 1024 // analogRead on my knob seems to max out at somthing below 1023 so define it here
                          // i sampled it at about 535 but use 530 and use a check for going over in code
                          // changed the circuit and now the range is 0 1024
+
+// secrets for wifi
+// should be in another file some day
+#define STASSID "your-ssid"
+#define STAPSK  "your-password"
 
 // Create display and DS1307 objects.  These are global variables that
 // can be accessed from both the setup and loop function below.
