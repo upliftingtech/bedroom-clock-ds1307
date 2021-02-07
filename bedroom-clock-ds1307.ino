@@ -37,7 +37,7 @@
 // unless you've changed the address jumpers on the back of the display.
 #define DISPLAY_ADDRESS   0x70
 
-#define BRIGHTNESS_HOW_OFTEN 250 // how often (in ms) do we check the brightness knob. 
+#define BRIGHTNESS_HOW_OFTEN 100 // how often (in ms) do we check the brightness knob. 
      // we only display once a second so nothing will be displayed until then anyway. 
      // maybe add display update when the knob changes logic
 
