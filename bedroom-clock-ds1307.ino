@@ -115,9 +115,6 @@ void setup() {
   // Setup the display.
   clockDisplay.begin(DISPLAY_ADDRESS);
   
-  // Setup wifi and connect to an access point
-  // setup_wifi(); crashing so comment out
-
   // Setup the DS1307 real-time clock.
   rtc.begin();
 
@@ -135,6 +132,11 @@ void setup() {
     // for example to set January 21, 2014 at 3am you would uncomment:
     //rtc.adjust(DateTime(2014, 1, 21, 3, 0, 0));
   }
+  
+  // Setup wifi and connect to an access point
+  setup_wifi();
+
+
 }
 
 void loop() {
