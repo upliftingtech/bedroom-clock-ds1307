@@ -37,11 +37,12 @@
 // unless you've changed the address jumpers on the back of the display.
 #define DISPLAY_ADDRESS   0x70
 
-# define BRIGHTNESS_HOW_OFTEN 250 // how often (in ms) do we check the brightness knob. 
+#define BRIGHTNESS_HOW_OFTEN 250 // how often (in ms) do we check the brightness knob. 
      // we only display once a second so nothing will be displayed until then anyway. 
      // maybe add display update when the knob changes logic
 
-# define WEMOS_D1_A0 0 //What does the Arduino IDE call the wemos A0 pin? Trying 0
+#define WEMOS_D1_A0 0 //What does the Arduino IDE call the wemos A0 pin? Trying 0
+#define KNOB_RAW_MAX 536 // analogRead on my knob seems to max out at somthing below 1023 so define it here
 
 // Create display and DS1307 objects.  These are global variables that
 // can be accessed from both the setup and loop function below.
@@ -106,11 +107,13 @@ void loop() {
 	  int x = analogRead(WEMOS_D1_A0); // analogRead returns 0 to 1023
 
 	  // i suspect the knob is not returning a max of 1023. let's take a look
+	  // actually doing 0 - 536
+	  // use KNOB_RAW_MAX macro for top end of range
 	  Serial.print("raw A0 pin ");
 	  Serial.println(x);
 
       // map analogRead range into the 16 steps the display can do (0-16? 0-15? not sure)
-	  x = map(x, 0, 1023, 0, 16); // map(value, fromLow, fromHigh, toLow, toHigh)
+	  x = map(x, 0, KNOB_RAW_MAX, 0, 16); // map(value, fromLow, fromHigh, toLow, toHigh)
 	  clockDisplay.setBrightness(x);
   }
 
