@@ -37,6 +37,14 @@
 // unless you've changed the address jumpers on the back of the display.
 #define DISPLAY_ADDRESS   0x70
 
+#define BRIGHTNESS_HOW_OFTEN 100 // how often (in ms) do we check the brightness knob. 
+     // we only display once a second so nothing will be displayed until then anyway. 
+     // maybe add display update when the knob changes logic
+
+#define WEMOS_D1_A0 0 //What does the Arduino IDE call the wemos A0 pin? Trying 0
+#define KNOB_RAW_MAX 1024 // analogRead on my knob seems to max out at somthing below 1023 so define it here
+                         // i sampled it at about 535 but use 530 and use a check for going over in code
+                         // changed the circuit and now the range is 0 1024
 
 // Create display and DS1307 objects.  These are global variables that
 // can be accessed from both the setup and loop function below.
@@ -58,7 +66,7 @@ bool blinkColon = false;
 
 // instantiate a Chrono object.
 Chrono loopChrono; 
-
+Chrono brightnessChrono;
 
 
 void setup() {
@@ -71,7 +79,6 @@ void setup() {
 
   // Setup the display.
   clockDisplay.begin(DISPLAY_ADDRESS);
-  clockDisplay.setBrightness(0); // set display to dimmest setting
 
   // Setup the DS1307 real-time clock.
   rtc.begin();
@@ -94,6 +101,26 @@ void setup() {
 
 void loop() {
   // Loop function runs over and over again to implement the clock logic.
+
+  // Is it time to read the brightnessKnob?	  
+  if (brightnessChrono.hasPassed(BRIGHTNESS_HOW_OFTEN)) {
+	  brightnessChrono.restart(); // starts restarts the chgronometer
+	  // Read an analog voltage from a pot and use it to set the brightness of the display	
+	  int x = analogRead(WEMOS_D1_A0); // analogRead returns 0 to 1023
+
+	  // i suspect the knob is not returning a max of 1023. let's take a look
+	  // actually doing 0 - 535
+	  // use KNOB_RAW_MAX macro for top end of range
+	  // changed the circuit again and now get 0-1024
+	  Serial.print("raw A0 pin ");
+	  Serial.println(x);
+
+      // map analogRead range into the 16 steps the display can do (0-15)
+	  x = map(x, 0, KNOB_RAW_MAX, 0, 15); // map(value, fromLow, fromHigh, toLow, toHigh)
+	  if (x > 15) x = 15; // just make sure mapped value isn't bigger than 15
+	  clockDisplay.setBrightness(x);
+  }
+
 	  
   // check to see if it is time to update the display and add a second
   if (loopChrono.hasPassed(1000) ) { // is true if 1000ms have passed since chronometer was started
